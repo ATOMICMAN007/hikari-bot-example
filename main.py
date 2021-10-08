@@ -1,10 +1,12 @@
+# TODO: Slash command doesn't work, find the cause
 import os
 
 import hikari
 import lightbulb
-from lightbulb.context import Context
 from dotenv import load_dotenv
 from hikari import Activity, ActivityType
+from lightbulb.context import Context
+
 
 load_dotenv()
 intents = hikari.Intents.ALL
@@ -19,7 +21,9 @@ bot = lightbulb.Bot(
 
 @bot.command()
 async def ping(ctx: Context):
+    """Shows the ping of the bot."""
     await ctx.respond(f"Pong! `{bot.heartbeat_latency * 1_000:.0f}ms`")
 
 
+bot.load_extension("plugins.slashes")
 bot.run(activity=Activity(name="with mud.", type=ActivityType.PLAYING))
