@@ -25,5 +25,5 @@ async def ping(ctx: Context):
     await ctx.respond(f"Pong! `{bot.heartbeat_latency * 1_000:.0f}ms`")
 
 
-bot.load_extension("plugins.slashes")
+bot.load_extension("plugs.slashes")
 bot.run(activity=Activity(name="with mud.", type=ActivityType.PLAYING))
