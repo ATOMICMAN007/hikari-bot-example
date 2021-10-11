@@ -1,6 +1,6 @@
 import hikari
 import lightbulb
-from lightbulb.slash_commands import SlashCommand
+from lightbulb.slash_commands import SlashCommand, SlashCommandContext
 
 
 class Slashes(lightbulb.Plugin):
@@ -14,16 +14,16 @@ class Slashy(SlashCommand):
     name = "test"
     description = "This is a test command."
 
-    async def callback(self, ctx):
+    async def callback(self, ctx: SlashCommandContext):
         await ctx.respond("Sup, This is a test command.")
 
 
 def load(bot: lightbulb.Bot):
     bot.add_plugin(Slashes())
-    bot.add_slash_command(Slashy)
+    # bot.add_slash_command(Slashy)
 
 
 def unload(bot: lightbulb.Bot):
     bot.remove_plugin("Slashes")
-    # The slash command name has to be passed in here, not class name.
-    bot.remove_slash_command("test")
+    # The slash command `name` has to be passed in `bot.remove_slash_command()`, not class name.
+    # bot.remove_slash_command("test")
